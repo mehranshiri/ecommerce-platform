@@ -1,0 +1,17 @@
+# Ignore Go binaries
+bin/
+dist/
+
+# Ignore environment files
+.env
+
+# Ignore IDE-specific files
+.idea/
+.vscode/
+
+# Ignore dependency directories
+vendor/
+node_modules/
+
+# Ignore log files
+*.log

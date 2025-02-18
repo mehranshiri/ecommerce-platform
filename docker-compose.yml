@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_DB: ecommerce_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  user-service:
+    build:
+      context: ./user-service  # Path to users microservice
+      dockerfile: Dockerfile
+    container_name: user-service
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    volumes:
+      - ./user-service:/app  # Mount local code to avoid rebuilding
+    command: air
+
+volumes:
+  pgdata:
