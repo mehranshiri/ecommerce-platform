@@ -13,6 +13,7 @@ func main() {
 	database.ConnectDB()
 
 	router.POST("/register", handlers.RegisterUser)
+	router.POST("/login", handlers.LoginUser)
 	router.GET("/", func(ctx *gin.Context) {
 		data := gin.H{
 			"key": 23324,
