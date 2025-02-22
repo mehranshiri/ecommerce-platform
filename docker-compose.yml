@@ -26,6 +26,32 @@ services:
     volumes:
       - ./user-service:/app  # Mount local code to avoid rebuilding
     command: air
+  inventory-service:
+    build:
+      context: ./inventory-service  # Path to users microservice
+      dockerfile: Dockerfile
+    container_name: inventory-service
+    restart: always
+    ports:
+      - "8081:8081"
+    depends_on:
+      - db
+    volumes:
+      - ./inventory-service:/app  # Mount local code to avoid rebuilding
+    command: air
+  order-service:
+    build:
+      context: ./order-service  # Path to users microservice
+      dockerfile: Dockerfile
+    container_name: order-service
+    restart: always
+    ports:
+      - "8082:8082"
+    depends_on:
+      - db
+    volumes:
+      - ./order-service:/app
+    command: air
 
 volumes:
   pgdata:
