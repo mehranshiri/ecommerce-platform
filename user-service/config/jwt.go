@@ -8,7 +8,7 @@ import (
 )
 
 // Secret key for signing JWTs (Use env variable in production)
-var JwtSecret = []byte("JWT_KEY")
+var JwtSecret = []byte(GetEnv("JWT_KEY", "JWT_KEY"))
 
 // GenerateJWT generates a new JWT token
 func GenerateJWT(userID uint, email string) (string, error) {
